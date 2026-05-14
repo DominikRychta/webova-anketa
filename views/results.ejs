@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Výsledky ankety</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero card hero-results">
+      <div>
+        <p class="eyebrow">Výsledky ankety</p>
+        <h1><%= poll.title %></h1>
+        <p class="lead"><%= poll.description %></p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <span class="stat-number"><%= totalResponses %></span>
+          <span class="stat-label">odpovědí celkem</span>
+        </div>
+        <a class="button button-secondary" href="/">Zpět k formuláři</a>
+      </div>
+    </section>
+
+    <section class="card results-card">
+      <% poll.questions.forEach((question, index) => { %>
+        <article class="result-block">
+          <div class="question-head">
+            <h2><%= index + 1 %>. <%= question.text %></h2>
+            <p><%= question.type === 'scale' ? 'Stupnice 1–5' : (Array.isArray(question.options) && question.options.length > 0 ? 'Uzavřená otázka' : 'Otevřená otázka') %></p>
+          </div>
+
+          <% if (Array.isArray(question.options) && question.options.length > 0) { %>
+            <canvas id="chart-<%= question.id %>" class="chart"></canvas>
+            <div class="result-list">
+              <% const stats = results[question.id] || []; %>
+              <% stats.forEach((item) => { %>
+                <div class="result-row">
+                  <div>
+                    <strong><%= item.label %></strong>
+                    <span><%= item.count %> odpovědí</span>
+                  </div>
+                  <span class="pill"><%= item.percent %>%</span>
+                </div>
+              <% }) %>
+            </div>
+          <% } else { %>
+            <div class="open-answers">
+              <% const answers = results[question.id] || []; %>
+              <% if (answers.length === 0) { %>
+                <p class="muted">Zatím žádné odpovědi.</p>
+              <% } else { %>
+                <% answers.forEach((answer) => { %>
+                  <div class="answer-card"><%= answer %></div>
+                <% }) %>
+              <% } %>
+            </div>
+          <% } %>
+        </article>
+      <% }) %>
+    </section>
+  </main>
+
+  <script id="chart-data" type="application/json"><%- JSON.stringify(chartData) %></script>
+  <script>
+    const chartData = JSON.parse(document.getElementById('chart-data').textContent || '{}');
+    Object.entries(chartData).forEach(([questionId, data]) => {
+      const canvas = document.getElementById(`chart-${questionId}`);
+      if (!canvas) return;
+
+      new Chart(canvas, {
+        type: 'doughnut',
+        data: {
+          labels: data.labels,
+          datasets: [{
+            data: data.values,
+            backgroundColor: ['#a855f7', '#fb7185', '#22d3ee', '#f472b6', '#c084fc', '#f59e0b'],
+            borderWidth: 0,
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: '#f8fafc'
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

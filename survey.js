@@ -1,0 +1,68 @@
+module.exports = {
+  id: 'music-survey-1',
+  title: 'Hudební anketa',
+  description: 'Krátká anketa o hudebních preferencích, poslechu a zvycích během dne.',
+  questions: [
+    {
+      id: 'music_genre',
+      type: 'closed',
+      text: 'Jaký hudební styl posloucháte nejčastěji?',
+      helpText: 'Vyberte jednu možnost.',
+      options: ['Pop', 'Rock', 'Hip hop', 'Elektronická hudba', 'Klasická hudba', 'Metal', 'Jiný'],
+    },
+    {
+      id: 'listening_time',
+      type: 'time',
+      text: 'Kdy posloucháš hudbu nejčastěji?',
+      helpText: 'Vyberte jednu možnost.',
+      options: ['Ráno', 'Během cesty', 'Odpoledne', 'Večer', 'Před spaním'],
+    },
+    {
+      id: 'listen_frequency',
+      type: 'scale',
+      text: 'Jak často posloucháš hudbu?',
+      helpText: '1 = téměř nikdy, 5 = každý den.',
+      options: ['1', '2', '3', '4', '5'],
+    },
+    {
+      id: 'music_mood',
+      type: 'scale',
+      text: 'Hudba mi zlepšuje náladu.',
+      helpText: '1 = vůbec nesouhlasím, 5 = úplně souhlasím.',
+      options: ['1', '2', '3', '4', '5'],
+    },
+    {
+      id: 'discover_new_music',
+      type: 'scale',
+      text: 'Rád/rada objevuji novou hudbu.',
+      helpText: '1 = vůbec ne, 5 = velmi rád/rada.',
+      options: ['1', '2', '3', '4', '5'],
+    },
+    {
+      id: 'daily_listening',
+      type: 'closed',
+      text: 'Jak dlouho obvykle posloucháš hudbu během dne?',
+      helpText: 'Vyber jednu možnost.',
+      options: ['Méně než 30 minut', '30–60 minut', '1–2 hodiny', '2–4 hodiny', 'Více než 4 hodiny'],
+    },
+    {
+      id: 'favorite_artist',
+      type: 'open',
+      text: 'Kdo je tvůj oblíbený interpret nebo kapela?',
+      helpText: 'Napiš jméno interpreta nebo kapely.',
+    },
+    {
+      id: 'streaming_service',
+      type: 'closed',
+      text: 'Jakou streamingovou službu používáš nejčastěji?',
+      helpText: 'Vyber jednu možnost.',
+      options: ['Spotify', 'Apple Music', 'YouTube Music', 'Deezer', 'Jiná', 'Nepoužívám žádnou'],
+    },
+    {
+      id: 'music_comment',
+      type: 'open',
+      text: 'Jaký interpret, žánr nebo písnička ti teď nejvíc sedí?',
+      helpText: 'Napište libovolný komentář.',
+    },
+  ],
+};

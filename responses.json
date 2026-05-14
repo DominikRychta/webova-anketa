@@ -1,0 +1,18 @@
+[
+  {
+    "surveyId": "music-survey-1",
+    "respondentName": "Dominik R",
+    "answers": {
+      "music_genre": "Klasická hudba",
+      "listening_time": "Před spaním",
+      "listen_frequency": "5",
+      "music_mood": "5",
+      "discover_new_music": "3",
+      "daily_listening": "30–60 minut",
+      "favorite_artist": "Frederyk Chopin",
+      "streaming_service": "Spotify",
+      "music_comment": "Krystian Zimerman"
+    },
+    "submittedAt": "2026-05-14T18:39:49.307Z"
+  }
+]
