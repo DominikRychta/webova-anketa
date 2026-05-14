@@ -92,7 +92,3 @@ Každá uložená odpověď v `responses.json` má strukturu:
 ## NPM skripty
 
 - `npm start` – spustí server (`node index.js`)
-
-## Autor a kontext
-
-Projekt je určen jako školní cvičení pro předmět PVY.
